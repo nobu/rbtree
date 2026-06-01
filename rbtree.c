@@ -99,6 +99,11 @@ static const rb_data_type_t rbtree_type = {
     {
         rbtree_mark, rbtree_free,
     },
+    0, 0,
+#ifdef RUBY_TYPED_FREE_IMMEDIATELY
+    RUBY_TYPED_FREE_IMMEDIATELY |
+#endif
+    0
 };
 #endif
 
