@@ -1354,7 +1354,7 @@ static VALUE
 rbtree_begin_inspect(VALUE self)
 {
     VALUE result = rb_str_new2("#<");
-    rb_str_cat2(result, rb_obj_classname(self));
+    rb_str_append(result, rb_class_name(rb_class_of(self)));
     rb_str_cat2(result, ": ");
     return result;
 }

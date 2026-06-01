@@ -643,6 +643,13 @@ class RBTreeTest < Test::Unit::TestCase
     end
   end
 
+  def test_inspect_encoding
+    c = Module.new do
+      break const_set("RB\u{1f332}", Class.new(RBTree))
+    end
+    assert_include(c.new.inspect, "RB\u{1f332}")
+  end
+
   def test_lower_bound
     rbtree = RBTree[*%w(a A c C e E)]
     assert_equal(%w(c C), rbtree.lower_bound("c"))
