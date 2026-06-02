@@ -4,13 +4,13 @@ on: [push, pull_request]
 
 jobs:
   ruby-versions:
-    if: ${{ startsWith(github.repository, 'ruby/') || github.event_name != 'schedule' }}
     uses: ruby/actions/.github/workflows/ruby_versions.yml@master
     with:
       engine: cruby
       min_version: 2.1
 
   build:
+    needs: ruby-versions
     strategy:
       fail-fast: false
       matrix:
